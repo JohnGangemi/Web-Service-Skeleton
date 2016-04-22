@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="CalculatorService" targetNamespace="http://sdatraining.jgangemi.org/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:tns="http://sdatraining.jgangemi.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:types>
+        <xs:schema xmlns:tns="http://sdatraining.jgangemi.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   attributeFormDefault="unqualified" elementFormDefault="unqualified"
+                   targetNamespace="http://sdatraining.jgangemi.org/">
+            <xs:element name="Addition" type="tns:Addition"/>
+            <xs:element name="AdditionResponse" type="tns:AdditionResponse"/>
+            <xs:element name="Division" type="tns:Division"/>
+            <xs:element name="DivisionResponse" type="tns:DivisionResponse"/>
+            <xs:element name="Multiplication" type="tns:Multiplication"/>
+            <xs:element name="MultiplicationResponse" type="tns:MultiplicationResponse"/>
+            <xs:element name="Subtraction" type="tns:Subtraction"/>
+            <xs:element name="SubtractionResponse" type="tns:SubtractionResponse"/>
+            <xs:complexType name="Addition">
+                <xs:sequence>
+                    <xs:element name="augend" type="xs:int"/>
+                    <xs:element name="addend" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AdditionResponse">
+                <xs:sequence>
+                    <xs:element name="sum" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Division">
+                <xs:sequence>
+                    <xs:element name="dividend" type="xs:int"/>
+                    <xs:element name="divisor" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="DivisionResponse">
+                <xs:sequence>
+                    <xs:element name="quotient" type="xs:float"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Multiplication">
+                <xs:sequence>
+                    <xs:element name="multiplier" type="xs:int"/>
+                    <xs:element name="multiplicand" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MultiplicationResponse">
+                <xs:sequence>
+                    <xs:element name="product" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Subtraction">
+                <xs:sequence>
+                    <xs:element name="minuend" type="xs:int"/>
+                    <xs:element name="subtrahend" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SubtractionResponse">
+                <xs:sequence>
+                    <xs:element name="difference" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="InvalidInput" type="tns:InvalidInput"/>
+            <xs:complexType name="InvalidInput">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="MultiplicationResponse">
+        <wsdl:part name="parameters" element="tns:MultiplicationResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="SubtractionResponse">
+        <wsdl:part name="parameters" element="tns:SubtractionResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="Addition">
+        <wsdl:part name="parameters" element="tns:Addition">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="Multiplication">
+        <wsdl:part name="parameters" element="tns:Multiplication">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="Subtraction">
+        <wsdl:part name="parameters" element="tns:Subtraction">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="AdditionResponse">
+        <wsdl:part name="parameters" element="tns:AdditionResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="InvalidInput">
+        <wsdl:part name="InvalidInput" element="tns:InvalidInput">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="DivisionResponse">
+        <wsdl:part name="parameters" element="tns:DivisionResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="Division">
+        <wsdl:part name="parameters" element="tns:Division">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="Calculator">
+        <wsdl:operation name="Addition">
+            <wsdl:input name="Addition" message="tns:Addition">
+            </wsdl:input>
+            <wsdl:output name="AdditionResponse" message="tns:AdditionResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Division">
+            <wsdl:input name="Division" message="tns:Division">
+            </wsdl:input>
+            <wsdl:output name="DivisionResponse" message="tns:DivisionResponse">
+            </wsdl:output>
+            <wsdl:fault name="InvalidInput" message="tns:InvalidInput">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="Multiplication">
+            <wsdl:input name="Multiplication" message="tns:Multiplication">
+            </wsdl:input>
+            <wsdl:output name="MultiplicationResponse" message="tns:MultiplicationResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Subtraction">
+            <wsdl:input name="Subtraction" message="tns:Subtraction">
+            </wsdl:input>
+            <wsdl:output name="SubtractionResponse" message="tns:SubtractionResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CalculatorServiceSoapBinding" type="tns:Calculator">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Addition">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="Addition">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="AdditionResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Division">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="Division">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="DivisionResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="InvalidInput">
+                <soap:fault name="InvalidInput" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="Multiplication">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="Multiplication">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="MultiplicationResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Subtraction">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="Subtraction">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="SubtractionResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CalculatorService">
+        <wsdl:port name="CalculatorServicePort" binding="tns:CalculatorServiceSoapBinding">
+            <!-- Default address for Tomcat deployment (CXF/Metro) -->
+            <!--<soap:address location="http://localhost:8080/Calculator/service/calc"/>-->
+
+            <!-- Default address for Karaf deployment (CXF only) -->
+            <soap:address location="http://localhost:8181/cxf/calc"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
