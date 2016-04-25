@@ -17,7 +17,8 @@
 
     <jaxws:endpoint
             id="jax-service-endpoint"
-            implementor="#bean-service-endpoint"
+            implementor="pack.service.MyServiceImpl"
+            wsdlLocation="WEB-INF/wsdl/MyWSDL.wsdl"
             address="/myServiceEndpoint">
     </jaxws:endpoint>
 </beans>

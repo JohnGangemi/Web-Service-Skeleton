@@ -7,7 +7,9 @@
           <element id="module-output" name="war" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: SIMON-3:calculator-service:1.0-SNAPSHOT" />
+          <element id="archive" name="service-artifact-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="service" />
+          </element>
           <element id="library" level="project" name="Maven: org.springframework:spring-web:4.1.6.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.1.6.RELEASE" />
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />

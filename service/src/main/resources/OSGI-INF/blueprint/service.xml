@@ -9,13 +9,10 @@
         http://cxf.apache.org/blueprint/core http://cxf.apache.org/schemas/blueprint/core.xsd
      ">
 
-    <bean id="bean-service-endpoint"
-          class="pack.service.MyServiceImpl">
-    </bean>
-
     <jaxws:endpoint
             id="jaxws-service-endpoint"
-            implementor="#bean-service-endpoint"
+            implementor="pack.service.MyServiceImpl"
+            wsdlLocation="classes/MyWSDL.wsdl"
             address="/myServiceEndpoint">
     </jaxws:endpoint>
 </blueprint>
