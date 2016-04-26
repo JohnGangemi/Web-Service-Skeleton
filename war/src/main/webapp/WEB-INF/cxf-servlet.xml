@@ -11,10 +11,6 @@
          other CXF beans in this file such as CXF's JMX MBeans -->
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
 
-    <bean id="bean-service-endpoint"
-          class="pack.service.MyServiceImpl">
-    </bean>
-
     <jaxws:endpoint
             id="jax-service-endpoint"
             implementor="pack.service.MyServiceImpl"
